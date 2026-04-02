@@ -1,0 +1,8 @@
+<div class="toasts note mb-4">
+  <div class="title px-2 py-1">
+    {{ partial "icon.html" "info-circle" }} {{ i18n "note" | default "Note" }}
+  </div>
+  <div class="content px-2 py-3">
+    {{ .Inner | markdownify }}
+  </div>
+</div>

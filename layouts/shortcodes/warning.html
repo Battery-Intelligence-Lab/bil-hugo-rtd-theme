@@ -1,0 +1,8 @@
+<div class="toasts warning mb-4">
+  <div class="title px-2 py-1">
+    {{ partial "icon.html" "warning" }} {{ i18n "warning" | default "Warning" }}
+  </div>
+  <div class="content px-2 py-3">
+    {{ .Inner | markdownify }}
+  </div>
+</div>

@@ -1,0 +1,21 @@
+{{- /*
+  Collapsible details/summary shortcode.
+
+  Usage (positional only — no mixed params):
+    {{< details "Click to expand" >}}
+    Hidden content here. Supports **markdown**.
+    {{< /details >}}
+
+    {{< details "Show derivation (open)" >}}
+    This starts expanded when title ends with "(open)".
+    {{< /details >}}
+*/ -}}
+{{- $title := .Get 0 | default "Details" -}}
+{{- $open := strings.HasSuffix $title "(open)" -}}
+{{- if $open }}{{ $title = strings.TrimSuffix "(open)" $title | strings.TrimRight " " }}{{ end -}}
+<details class="details-block" {{ if $open }}open{{ end }}>
+  <summary>{{ $title }}</summary>
+  <div class="details-content">
+    {{ .Inner | markdownify }}
+  </div>
+</details>

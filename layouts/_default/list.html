@@ -1,0 +1,12 @@
+{{ define "main" }}
+  {{ .Content }}
+
+  {{- /* If section index has no explicit content, list child pages */ -}}
+  {{ if not .Content }}
+  <ul>
+    {{ range .Pages }}
+    <li><a href="{{ .RelPermalink }}">{{ .LinkTitle | default .Title }}</a></li>
+    {{ end }}
+  </ul>
+  {{ end }}
+{{ end }}

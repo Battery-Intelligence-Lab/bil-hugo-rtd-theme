@@ -1,0 +1,31 @@
+<div class="sidebar-wrap overflow-hidden">
+  <div class="sidebar height-full overflow-y-scroll overflow-x-hidden">
+    <div class="header d-flex flex-column p-3 text-center">
+      <div class="title pb-1">
+        <a class="h2 no-underline py-1 px-2 rounded-1" href="{{ "/" | relURL }}"
+           title="{{ .Site.Params.description }}">
+          {{ partial "icon.html" "home" }} {{ .Site.Title }}
+        </a>
+      </div>
+      {{ with .Site.Params.logo }}
+      <div>
+        <a href="{{ "/" | relURL }}">
+          <img src="{{ . | relURL }}" width="100%" height="auto" alt="{{ $.Site.Title }} logo">
+        </a>
+      </div>
+      {{ end }}
+      {{ with .Site.Params.version }}
+      <span class="version">{{ . }}</span>
+      {{ end }}
+      {{ if .Site.Params.search_enabled }}
+      <form class="search pt-2" action="{{ "search/" | relURL }}" method="get" autocomplete="off">
+        <input class="form-control input-block input-sm" type="text" name="q"
+               placeholder="{{ i18n "search_docs" | default "Search docs..." }}">
+      </form>
+      {{ end }}
+    </div>
+    <div class="toctree py-2" data-spy="affix" role="navigation" aria-label="main navigation">
+      {{ partial "toctree.html" . }}
+    </div>
+  </div>
+</div>

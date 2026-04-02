@@ -1,0 +1,55 @@
+{{- /* Prev / Next navigation — skip nav_exclude pages */ -}}
+{{ $prev := .PrevInSection }}
+{{ if and $prev $prev.Params.nav_exclude }}{{ $prev = nil }}{{ end }}
+{{ $next := .NextInSection }}
+{{ if and $next $next.Params.nav_exclude }}{{ $next = nil }}{{ end }}
+{{ if or $prev $next }}
+<div class="navigation-bottom d-flex flex-justify-between py-3" role="navigation" aria-label="footer navigation">
+  <div class="prev">
+    {{ with $prev }}
+    <a href="{{ .RelPermalink }}" class="btn" title="{{ .Title }}" accesskey="p" rel="prev">
+      {{ partial "icon.html" "chevron-left" }} {{ i18n "previous" | default "Previous" }}
+    </a>
+    {{ end }}
+  </div>
+  <div class="next">
+    {{ with $next }}
+    <a href="{{ .RelPermalink }}" class="btn" title="{{ .Title }}" accesskey="n" rel="next">
+      {{ i18n "next" | default "Next" }} {{ partial "icon.html" "chevron-right" }}
+    </a>
+    {{ end }}
+  </div>
+</div>
+{{ end }}
+
+{{- /* Last modified date */ -}}
+{{ if and .GitInfo .Site.Params.show_last_modified }}
+<div class="last-modified text-right">
+  Last updated: {{ .GitInfo.AuthorDate.Format "January 2, 2006" }}
+</div>
+{{ else if .Lastmod }}
+{{ if ne .Lastmod .Date }}
+<div class="last-modified text-right">
+  Last updated: {{ .Lastmod.Format "January 2, 2006" }}
+</div>
+{{ end }}
+{{ end }}
+
+<hr>
+
+<div class="copyright text-center text-gray" role="contentinfo">
+  {{ partial "icon.html" "copyright" }}
+  <span class="time">
+    {{ now.Format "2006" }},
+  </span>
+  {{ with .Site.Params.site_author }}
+  <span>{{ . }}</span>
+  {{ end }}
+  <br>
+  <div class="generator">
+    {{ i18n "built_with" | default "Built with" }}
+    <a href="https://gohugo.io" rel="noreferrer" target="_blank">Hugo</a>
+    {{ i18n "using_theme" | default "using a theme provided by" }}
+    <a href="https://github.com/Battery-Intelligence-Lab/" rel="noreferrer" target="_blank">Battery Intelligence Lab</a>.
+  </div>
+</div>

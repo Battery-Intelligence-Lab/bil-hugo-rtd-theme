@@ -1,0 +1,23 @@
+reniers2019:
+  authors: "J.M. Reniers, G. Mulder, D.A. Howey"
+  title: "Review and performance comparison of mechanical-chemical degradation models for lithium-ion batteries"
+  journal: "Journal of The Electrochemical Society"
+  year: 2019
+  doi: "10.1149/2.0281914jes"
+  short: "Reniers et al., 2019"
+
+sakti2015:
+  authors: "A. Sakti, J.J. Michalek, E.R.H. Fuchs, J.F. Whitacre"
+  title: "A techno-economic analysis and optimization of Li-ion batteries for light-duty passenger vehicle electrification"
+  journal: "Journal of Power Sources"
+  year: 2015
+  doi: "10.1016/j.jpowsour.2014.09.078"
+  short: "Sakti et al., 2015"
+
+kumtepeli2020:
+  authors: "V. Kumtepeli, Y. Zhao, M. Villen-Guzman, T. Langlois, D.A. Howey"
+  title: "Design and analysis of an aging-aware lithium-ion battery pack management system"
+  journal: "IFAC-PapersOnLine"
+  year: 2020
+  doi: "10.1016/j.ifacol.2020.12.2045"
+  short: "Kumtepeli et al., 2020"

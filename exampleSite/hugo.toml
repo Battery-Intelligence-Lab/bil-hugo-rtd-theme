@@ -1,0 +1,26 @@
+baseURL = "https://battery-intelligence-lab.github.io/bil-hugo-rtd-theme/"
+title = "BIL Hugo RTD Theme"
+languageCode = "en"
+
+# Use local theme (parent directory)
+theme = "../.."
+
+[params]
+  description = "Example documentation site for the BIL Hugo RTD Theme."
+  logo = "docs_logo.png"
+  version = "v1.0.0"
+  edit_on_github = false
+  repo_url = "https://github.com/Battery-Intelligence-Lab/bil-hugo-rtd-theme/"
+  search_enabled = true
+  code_copy = true
+  site_author = "Battery Intelligence Lab"
+
+[markup]
+  [markup.highlight]
+    style = "github"
+    noClasses = false
+  [markup.goldmark.renderer]
+    unsafe = true
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 4

@@ -1,0 +1,20 @@
+{{- /* Build the sidebar nav tree from Hugo's section hierarchy */ -}}
+{{- /* Root-level pages (not in sections) */ -}}
+{{ $rootPages := where .Site.Home.RegularPages "Params.nav_exclude" "ne" true }}
+{{ if $rootPages }}
+<ul>
+  {{ range $rootPages }}
+  {{ $isCurrent := eq . $.Page }}
+  <li class="toc level-1{{ if $isCurrent }} current{{ end }}" data-level="1">
+    <a class="{{ if $isCurrent }}current{{ end }}" href="{{ .RelPermalink }}">
+      {{ .LinkTitle | default .Title }}
+    </a>
+  </li>
+  {{ end }}
+</ul>
+{{ end }}
+
+{{- /* Section tree */ -}}
+{{ range .Site.Home.Sections }}
+  {{ partial "toctree-node.html" (dict "page" . "current" $.Page "level" 1) }}
+{{ end }}

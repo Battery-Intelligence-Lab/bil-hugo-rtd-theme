@@ -1,0 +1,33 @@
+{{- /*
+  YouTube video embed shortcode with responsive container.
+
+  Usage (positional only):
+    {{< youtube "dQw4w9WgXcQ" >}}
+    {{< youtube "https://www.youtube.com/watch?v=dQw4w9WgXcQ" >}}
+    {{< youtube "https://youtu.be/dQw4w9WgXcQ" >}}
+*/ -}}
+{{- $id := .Get 0 -}}
+
+{{- /* Extract video ID from full URL — with bounds checking */ -}}
+{{- if and (strings.Contains $id "youtube.com") (strings.Contains $id "v=") -}}
+  {{- $parts := split $id "v=" -}}
+  {{- if gt (len $parts) 1 -}}
+    {{- $id = index (split (index $parts 1) "&") 0 -}}
+  {{- end -}}
+{{- else if strings.Contains $id "youtu.be/" -}}
+  {{- $parts := split $id "youtu.be/" -}}
+  {{- if gt (len $parts) 1 -}}
+    {{- $id = index (split (index $parts 1) "?") 0 -}}
+  {{- end -}}
+{{- end -}}
+
+<div class="video-container">
+  <iframe
+    src="https://www.youtube-nocookie.com/embed/{{ $id }}"
+    title="YouTube video"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+    loading="lazy">
+  </iframe>
+</div>

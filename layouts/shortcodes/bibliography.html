@@ -1,0 +1,23 @@
+{{- /*
+  Bibliography list — renders all entries from data/bibliography.yaml
+
+  Usage: {{< bibliography >}}
+
+  Place this at the bottom of a page to show all referenced works.
+*/ -}}
+{{ with .Site.Data.bibliography }}
+<div class="bibliography">
+  <h2>References</h2>
+  <ol class="bibliography-list">
+    {{ range $key, $entry := . }}
+    <li id="ref-{{ $key }}">
+      {{ $entry.authors }}.
+      "{{ $entry.title }}."
+      {{ with $entry.journal }}<em>{{ . }}</em>,{{ end }}
+      {{ $entry.year }}.
+      {{ with $entry.doi }}DOI: <a href="https://doi.org/{{ . }}" rel="noreferrer" target="_blank">{{ . }}</a>{{ end }}
+    </li>
+    {{ end }}
+  </ol>
+</div>
+{{ end }}

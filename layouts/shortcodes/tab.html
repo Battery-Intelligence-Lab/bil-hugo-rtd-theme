@@ -1,0 +1,8 @@
+{{- /*
+  Individual tab within a tabs container.
+  Usage: {{< tab "Tab Label" >}} content {{< /tab >}}
+*/ -}}
+{{ $label := .Get 0 }}
+<div class="tab-panel" data-tab-label="{{ $label }}" role="tabpanel">
+  {{ .Inner | .Page.RenderString }}
+</div>

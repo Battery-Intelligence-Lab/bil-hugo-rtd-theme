@@ -1,0 +1,17 @@
+# Hugo build output
+public/
+resources/
+.hugo_build.lock
+
+# Node (Pagefind)
+node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo

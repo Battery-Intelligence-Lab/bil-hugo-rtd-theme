@@ -1,0 +1,55 @@
+{{- $page := .page -}}
+{{- $current := .current -}}
+{{- $level := .level -}}
+{{- $isCurrent := eq $page $current -}}
+{{- $isAncestor := $current.IsDescendant $page -}}
+{{- $hasChildren := or ($page.Sections) ($page.RegularPages) -}}
+
+{{- /* Section caption at level 1 */ -}}
+{{ if eq $level 1 }}
+<a class="caption d-block text-uppercase no-wrap px-2 py-0" href="{{ $page.RelPermalink }}">
+  {{ $page.LinkTitle | default $page.Title }}
+</a>
+{{ end }}
+
+<ul>
+  {{- /* The section index page itself (if level > 1) */ -}}
+  {{ if ne $level 1 }}
+  <li class="toc level-{{ $level }}{{ if $isCurrent }} current{{ end }}{{ if $isAncestor }} current{{ end }}" data-level="{{ $level }}">
+    <a class="{{ if $isCurrent }}current{{ end }}" href="{{ $page.RelPermalink }}">
+      {{ $page.LinkTitle | default $page.Title }}
+    </a>
+    {{ if and $isCurrent (not $hasChildren) }}
+      {{ with $current.TableOfContents }}
+      <ul class="content-toc">{{ . }}</ul>
+      {{ end }}
+    {{ end }}
+  </li>
+  {{ end }}
+
+  {{- /* Child sections (subsections), ordered by weight */ -}}
+  {{ range $page.Sections }}
+    {{ if not .Params.nav_exclude }}
+    <li class="toc level-{{ add $level 1 }}{{ if or (eq . $current) ($current.IsDescendant .) }} current{{ end }}" data-level="{{ add $level 1 }}">
+      {{ partial "toctree-node.html" (dict "page" . "current" $current "level" (add $level 1)) }}
+    </li>
+    {{ end }}
+  {{ end }}
+
+  {{- /* Regular pages in this section, ordered by weight */ -}}
+  {{ range $page.RegularPages }}
+    {{ if not .Params.nav_exclude }}
+    {{ $isThisPage := eq . $current }}
+    <li class="toc level-{{ add $level 1 }}{{ if $isThisPage }} current{{ end }}" data-level="{{ add $level 1 }}">
+      <a class="{{ if $isThisPage }}current{{ end }}" href="{{ .RelPermalink }}">
+        {{ .LinkTitle | default .Title }}
+      </a>
+      {{ if $isThisPage }}
+        {{ with .TableOfContents }}
+        <ul class="content-toc">{{ . }}</ul>
+        {{ end }}
+      {{ end }}
+    </li>
+    {{ end }}
+  {{ end }}
+</ul>

@@ -1,0 +1,12 @@
+name = "BIL Hugo RTD Theme"
+license = "BSD-3-Clause"
+licenselink = "https://github.com/Battery-Intelligence-Lab/bil-hugo-rtd-theme/blob/main/LICENSE"
+description = "A Hugo theme inspired by Read the Docs, with Oxford blue styling for scientific documentation."
+homepage = "https://github.com/Battery-Intelligence-Lab/bil-hugo-rtd-theme"
+tags = ["docs", "documentation", "scientific", "readthedocs", "rtd", "responsive"]
+features = ["search", "syntax-highlighting", "dark-mode-ready", "mathjax", "mermaid"]
+min_version = "0.120.0"
+
+[author]
+  name = "Battery Intelligence Lab"
+  homepage = "https://howey.eng.ox.ac.uk"

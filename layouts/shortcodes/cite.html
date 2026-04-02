@@ -1,0 +1,27 @@
+{{- /*
+  Citation shortcode — references entries from data/bibliography.yaml
+
+  Usage:
+    {{< cite "reniers2019" >}}           → renders as [Reniers et al., 2019] with link
+    {{< cite "reniers2019" "p. 42" >}}   → [Reniers et al., 2019, p. 42]
+
+  The bibliography data file (data/bibliography.yaml) should have entries like:
+    reniers2019:
+      authors: "J.M. Reniers, G. Mulder, D.A. Howey"
+      title: "Review and performance comparison of mechanical-chemical degradation models"
+      journal: "Journal of The Electrochemical Society"
+      year: 2019
+      doi: "10.1149/2.0281914jes"
+      short: "Reniers et al., 2019"
+*/ -}}
+{{- $key := .Get 0 -}}
+{{- $extra := .Get 1 -}}
+{{- $bib := index .Site.Data.bibliography $key -}}
+{{- if $bib -}}
+  <a href="{{ with $bib.doi }}https://doi.org/{{ . }}{{ else }}#ref-{{ $key }}{{ end }}"
+     class="citation"
+     title="{{ $bib.authors }}. {{ $bib.title }}. {{ $bib.journal }}, {{ $bib.year }}."
+     rel="noreferrer" target="_blank">[{{ $bib.short | default $key }}{{ with $extra }}, {{ . }}{{ end }}]</a>
+{{- else -}}
+  <span class="citation citation-missing" title="Reference '{{ $key }}' not found in data/bibliography.yaml">[{{ $key }}{{ with $extra }}, {{ . }}{{ end }}]</span>
+{{- end -}}

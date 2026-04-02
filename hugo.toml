@@ -1,0 +1,30 @@
+# bil-hugo-rtd-theme — default configuration
+# Consumer repos override these values in their own hugo.toml
+
+[params]
+  description = ""
+  logo = ""
+  version = ""
+  edit_on_github = false
+  edit_branch = "main"
+  repo_url = ""
+  github_docs_folder = "docs/content"
+  search_enabled = true
+  code_copy = true
+  math_globally = false
+  mermaid_globally = false
+  theme_color = "rgb(0, 32, 72)"
+  right_toc = false
+  show_last_modified = false
+
+[markup]
+  [markup.highlight]
+    style = "github"
+    noClasses = false
+    lineNos = false
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 4

@@ -1,0 +1,40 @@
+{{- /* Theme config for JS */ -}}
+<script>
+  window.themeConfig = {
+    codeCopy: {{ if eq .Site.Params.code_copy false }}false{{ else }}true{{ end }}
+  };
+</script>
+
+{{- /* Theme JavaScript */ -}}
+{{ $js := resources.Get "js/theme.js" | minify | fingerprint }}
+<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
+
+{{- /* MathJax — load if page has math:true, site has math_globally, or content contains $$ */ -}}
+{{ $needsMath := or .Params.math .Site.Params.math_globally (findRE "\\$\\$" .RawContent 1) (findRE "\\\\\\(" .RawContent 1) }}
+{{ if $needsMath }}
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '0.8em',
+      processEscapes: true
+    },
+    options: {
+      ignoreHtmlClass: 'nostem|nolatex'
+    }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+{{ end }}
+
+{{- /* Mermaid — load if page has mermaid:true, site has mermaid_globally, or page has mermaid blocks */ -}}
+{{ $needsMermaid := or .Params.mermaid .Site.Params.mermaid_globally (findRE "<div class=\"mermaid" .Content 1) }}
+{{ if $needsMermaid }}
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, theme: 'default' });
+</script>
+{{ end }}

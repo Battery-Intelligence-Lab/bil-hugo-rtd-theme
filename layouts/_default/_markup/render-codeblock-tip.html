@@ -1,0 +1,8 @@
+<div class="toasts tip mb-4">
+  <div class="title px-2 py-1">
+    {{ partial "icon.html" "check-circle" }} {{ i18n "tip" | default "Tip" }}
+  </div>
+  <div class="content px-2 py-3">
+    {{ .Inner | .Page.RenderString }}
+  </div>
+</div>

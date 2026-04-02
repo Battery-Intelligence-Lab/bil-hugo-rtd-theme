@@ -1,0 +1,44 @@
+[search_docs]
+other = "Search docs..."
+
+[search_results]
+other = "Search Results"
+
+[search_results_found]
+other = "Found {{ .Count }} page(s) matching your query."
+
+[search_results_not_found]
+other = "No results found."
+
+[previous]
+other = "Previous"
+
+[next]
+other = "Next"
+
+[edit_on_github]
+other = "Edit on GitHub"
+
+[note]
+other = "Note"
+
+[tip]
+other = "Tip"
+
+[warning]
+other = "Warning"
+
+[danger]
+other = "Danger"
+
+[built_with]
+other = "Built with"
+
+[using_theme]
+other = "using a theme provided by"
+
+[revision]
+other = "Revision"
+
+[copied]
+other = "Copied!"

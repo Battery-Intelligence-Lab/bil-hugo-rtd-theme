@@ -1,0 +1,74 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+{{/* Title */}}
+<title>{{ if not .IsHome }}{{ .Title }} — {{ end }}{{ .Site.Title }}</title>
+
+{{/* Description */}}
+{{ with .Description | default .Site.Params.description }}
+<meta name="description" content="{{ . }}">
+{{ end }}
+
+{{/* Author */}}
+{{ with .Site.Params.site_author }}
+<meta name="author" content="{{ . }}">
+{{ end }}
+
+{{/* Canonical */}}
+<link rel="canonical" href="{{ .Permalink }}">
+
+{{/* Prev/Next for SEO */}}
+{{ with .PrevInSection }}<link rel="prev" href="{{ .Permalink }}">{{ end }}
+{{ with .NextInSection }}<link rel="next" href="{{ .Permalink }}">{{ end }}
+
+{{/* OpenGraph */}}
+<meta property="og:title" content="{{ .Title }}">
+<meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+<meta property="og:url" content="{{ .Permalink }}">
+{{ with .Site.Title }}<meta property="og:site_name" content="{{ . }}">{{ end }}
+
+{{/* Twitter Card */}}
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="{{ .Title }}">
+<meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+
+{{/* Favicons */}}
+<link rel="icon" type="image/png" sizes="96x96" href="{{ "images/favicon-96x96.png" | relURL }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ "images/favicon-32x32.png" | relURL }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ "images/favicon-16x16.png" | relURL }}">
+
+{{/* Font preloads */}}
+{{ $fontBase := "fonts/" | relURL }}
+<link rel="preload" href="{{ "fonts/lato-normal.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ "fonts/Roboto-Slab-Regular.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+
+{{/* @font-face declarations — must be in HTML template for relURL to work with baseURL path prefixes */}}
+<style>
+@font-face { font-family: "Lato"; font-weight: 400; font-style: normal; font-display: swap; src: url("{{ "fonts/lato-normal.woff2" | relURL }}") format("woff2"); }
+@font-face { font-family: "Lato"; font-weight: 400; font-style: italic; font-display: swap; src: url("{{ "fonts/lato-normal-italic.woff2" | relURL }}") format("woff2"); }
+@font-face { font-family: "Lato"; font-weight: 700; font-style: normal; font-display: swap; src: url("{{ "fonts/lato-bold.woff2" | relURL }}") format("woff2"); }
+@font-face { font-family: "Lato"; font-weight: 700; font-style: italic; font-display: swap; src: url("{{ "fonts/lato-bold-italic.woff2" | relURL }}") format("woff2"); }
+@font-face { font-family: "Roboto-Slab"; font-weight: 400; font-style: normal; font-display: swap; src: url("{{ "fonts/Roboto-Slab-Regular.woff2" | relURL }}") format("woff2"); }
+@font-face { font-family: "Roboto-Slab"; font-weight: 700; font-style: normal; font-display: swap; src: url("{{ "fonts/Roboto-Slab-Bold.woff2" | relURL }}") format("woff2"); }
+</style>
+
+{{/* DNS prefetch for CDN resources */}}
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+{{/* SCSS via Hugo Pipes */}}
+{{ $opts := dict "targetPath" "css/theme.css" "outputStyle" "compressed" }}
+{{ $style := resources.Get "scss/theme.scss" | toCSS $opts | fingerprint }}
+<link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
+
+{{/* JSON-LD structured data */}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": {{ if .IsPage }}"Article"{{ else }}"WebPage"{{ end }},
+  "headline": {{ .Title | jsonify }},
+  "url": {{ .Permalink | jsonify }}
+  {{ with .Site.Params.site_author }},"author": {"@type": "Organization", "name": {{ . | jsonify }}}{{ end }}
+}
+</script>

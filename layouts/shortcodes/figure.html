@@ -1,0 +1,18 @@
+{{- /*
+  Figure shortcode with caption, width, and lightbox support.
+
+  Usage:
+    {{< figure src="image.png" caption="My figure caption" width="80%" >}}
+    {{< figure src="/method/dtw_image.png" caption="DTW cost matrix" width="600px" id="fig-dtw" >}}
+*/ -}}
+<figure class="figure-block" {{ with .Get "id" }}id="{{ . }}"{{ end }}>
+  <a href="{{ .Get "src" | relURL }}" class="lightbox-trigger">
+    <img src="{{ .Get "src" | relURL }}"
+         alt="{{ .Get "caption" | default (.Get "alt") | default "" }}"
+         {{ with .Get "width" }}style="width: {{ . }}; max-width: 100%;"{{ end }}
+         loading="lazy">
+  </a>
+  {{ with .Get "caption" }}
+  <figcaption>{{ . | markdownify }}</figcaption>
+  {{ end }}
+</figure>

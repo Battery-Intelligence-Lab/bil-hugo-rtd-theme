@@ -1,0 +1,12 @@
+{{- /*
+  API cross-reference shortcode — links to Doxygen-generated API docs.
+
+  Usage:
+    {{< api "DTW::compute" >}}                    → links to /api/classDTW.html
+    {{< api "DTW::compute" "compute method" >}}    → custom link text
+    {{< api "Settings" >}}                         → links to /api/classSettings.html
+*/ -}}
+{{- $symbol := .Get 0 -}}
+{{- $text := .Get 1 | default $symbol -}}
+{{- $class := index (split $symbol "::") 0 -}}
+<a href="{{ printf "/api/class%s.html" $class | relURL }}" class="api-ref" title="API: {{ $symbol }}"><code>{{ $text }}</code></a>

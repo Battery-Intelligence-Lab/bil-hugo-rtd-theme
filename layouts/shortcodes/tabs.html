@@ -1,0 +1,25 @@
+{{- /*
+  Tabbed content shortcode for multi-language code blocks.
+
+  Usage:
+    {{< tabs "unique-id" >}}
+    {{< tab "C++" >}}
+    ```cpp
+    // C++ code here
+    ```
+    {{< /tab >}}
+    {{< tab "Python" >}}
+    ```python
+    # Python code here
+    ```
+    {{< /tab >}}
+    {{< /tabs >}}
+*/ -}}
+{{ $id := .Get 0 | default (printf "tabs-%d" .Ordinal) }}
+<div class="tabs-container" data-tabs-id="{{ $id }}">
+  <div class="tabs-nav" role="tablist">
+  </div>
+  <div class="tabs-content">
+    {{ .Inner }}
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="navigation-top d-flex flex-justify-between">
+  <ul class="breadcrumb" role="navigation" aria-label="breadcrumbs navigation">
+    <li class="breadcrumb-item">
+      <a class="no-underline" href="{{ "/" | relURL }}" title="{{ .Site.Title }}">
+        {{ partial "icon.html" "home" }}
+      </a>
+    </li>
+    {{ range .Ancestors.Reverse }}
+      {{ if not .IsHome }}
+      <li class="breadcrumb-item">
+        <a href="{{ .RelPermalink }}">{{ .LinkTitle | default .Title }}</a>
+      </li>
+      {{ end }}
+    {{ end }}
+    {{ if not .IsHome }}
+    <li class="breadcrumb-item" aria-current="page">
+      {{ .LinkTitle | default .Title }}
+    </li>
+    {{ end }}
+  </ul>
+  {{ if .Site.Params.edit_on_github }}
+  {{ with .File }}
+  <a class="edit" href="{{ $.Site.Params.repo_url }}edit/{{ $.Site.Params.edit_branch | default "main" }}/{{ $.Site.Params.github_docs_folder | default "docs/content" }}/{{ .Path }}" title="{{ i18n "edit_on_github" | default "Edit on GitHub" }}" rel="noreferrer" target="_blank">
+    {{ partial "icon.html" "edit" }}
+  </a>
+  {{ end }}
+  {{ end }}
+</div>

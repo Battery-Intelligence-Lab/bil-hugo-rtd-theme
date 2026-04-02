@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!-- bil-hugo-rtd-theme | Migrated from Jekyll to Hugo by Volkan Kumtepeli -->
+<html lang="{{ .Lang | default "en" }}" dir="ltr">
+<head>
+  {{ partial "head.html" . }}
+</head>
+<body class="container">
+  {{ partial "sidebar.html" . }}
+  <div class="content-wrap">
+    <div class="header d-flex flex-justify-between p-2 hide-lg hide-xl" aria-label="top navigation">
+      <button id="toggle" aria-label="Toggle menu" class="btn-octicon p-2 m-0 text-white" type="button">
+        {{ partial "icon.html" "menu" }}
+      </button>
+      <div class="title flex-1 d-flex flex-justify-center">
+        <a class="h4 no-underline py-1 px-2 rounded-1" href="{{ "/" | relURL }}">{{ .Site.Title }}</a>
+      </div>
+    </div>
+    <div class="content p-3 p-sm-5">
+      {{ partial "breadcrumbs.html" . }}
+      <hr>
+      <div role="main" itemscope itemtype="https://schema.org/Article" class="d-flex">
+        <div class="markdown-body flex-1" itemprop="articleBody">
+          {{ block "main" . }}{{ end }}
+        </div>
+        {{- /* Optional right-rail page TOC for long pages */ -}}
+        {{ if and .IsPage (not .Params.hide_toc) .TableOfContents }}
+        {{ if .Site.Params.right_toc }}
+        <nav class="page-toc hide-md hide-sm hide-lg">
+          <div class="page-toc-title">On this page</div>
+          {{ .TableOfContents }}
+        </nav>
+        {{ end }}
+        {{ end }}
+      </div>
+      {{ partial "footer.html" . }}
+    </div>
+  </div>
+  {{ partial "scripts.html" . }}
+</body>
+</html>
