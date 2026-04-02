@@ -1,0 +1,51 @@
+name: Build Hugo Documentation
+
+on:
+  workflow_call:
+    inputs:
+      docs_path:
+        description: "Path to docs directory within the repo"
+        default: "docs"
+        type: string
+      base_url:
+        description: "Base URL for the deployed site"
+        required: true
+        type: string
+      hugo_version:
+        description: "Hugo version to use"
+        default: "latest"
+        type: string
+      go_version:
+        description: "Go version (required for Hugo modules)"
+        default: "1.22"
+        type: string
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: ${{ inputs.go_version }}
+
+      - uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: ${{ inputs.hugo_version }}
+          extended: true
+
+      - name: Pull theme module and build
+        working-directory: ${{ inputs.docs_path }}
+        run: |
+          hugo mod get -u
+          hugo --minify --baseURL "${{ inputs.base_url }}"
+
+      - name: Build Pagefind search index
+        working-directory: ${{ inputs.docs_path }}
+        run: npx pagefind@1.3.0 --site public --output-subdir _pagefind
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ inputs.docs_path }}/public
