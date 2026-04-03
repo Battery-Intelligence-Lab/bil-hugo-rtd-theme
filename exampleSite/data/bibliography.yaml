@@ -11,7 +11,8 @@ perriment2026:
   title: "Understanding long-term energy use in off-grid solar home systems in sub-Saharan Africa"
   journal: "Energy for Sustainable Development"
   year: 2026
-  doi: "10.1016/j.esd.2026.101896"
+  volume: "90, 101896"
+  doi: "10.1016/j.esd.2025.101896"
   short: "Perriment et al., 2026"
 
 kumtepeli2026:
@@ -19,5 +20,6 @@ kumtepeli2026:
   title: "Electrochemical-thermal modelling of high power Li-ion pouch cells"
   journal: "Journal of Power Sources"
   year: 2026
-  doi: "10.1016/j.jpowsour.2026.238764"
+  volume: "663, 238764"
+  doi: "10.1016/j.jpowsour.2025.238764"
   short: "Kumtepeli et al., 2026"
