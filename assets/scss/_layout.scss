@@ -1,9 +1,13 @@
+// Mobile: sidebar slides in from left
 .menu-sm {
   position: fixed;
+  top: 0;
   bottom: 0;
   left: -$theme-menu-width-sm;
   width: $theme-menu-width-sm;
   max-height: 100%;
+  z-index: 100;
+  transition: left 0.25s ease;
 
   &.shift {
     left: 0;
@@ -11,8 +15,6 @@
 }
 
 .sidebar-wrap {
-  top: 0;
-
   @extend .menu-sm;
 
   .sidebar > :last-child {
@@ -25,19 +27,32 @@
 }
 
 .content-wrap {
+  min-height: 100vh;
+  transition: transform 0.25s ease;
+
   &.shift {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: $theme-menu-width-sm;
-    min-width: 100%;
+    transform: translateX($theme-menu-width-sm);
   }
 }
 
+// Overlay when mobile sidebar is open
+.content-wrap.shift::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 50;
+}
+
+// Tablet/desktop: sidebar always visible
 @include breakpoint(md) {
   .menu-md {
     left: 0;
     width: $theme-menu-width;
+    transition: none;
   }
 
   .sidebar-wrap {
@@ -60,11 +75,14 @@
 
   .content-wrap {
     margin-left: $theme-menu-width;
+    transition: none;
 
     &.shift {
-      position: relative;
-      left: 0;
-      min-width: 0;
+      transform: none;
+    }
+
+    &.shift::before {
+      display: none;
     }
   }
 }

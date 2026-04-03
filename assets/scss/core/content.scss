@@ -1,4 +1,95 @@
 .content-wrap {
   font-size: $h4-size;
   background: $theme-white;
+  overflow-x: hidden;
+}
+
+// Mobile content area responsive fixes
+.content {
+  // Prevent horizontal overflow on mobile
+  overflow-x: auto;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+// Responsive tables — horizontal scroll on mobile
+.markdown-body table {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+// Responsive code blocks — don't overflow container
+.markdown-body pre {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+// Responsive images
+.markdown-body img {
+  max-width: 100%;
+  height: auto;
+}
+
+// Mobile: tighter padding
+@media (max-width: 543px) {
+  .content {
+    padding: 12px !important;
+  }
+
+  .markdown-body {
+    font-size: 15px;
+
+    h1 { font-size: 1.6em; }
+    h2 { font-size: 1.35em; }
+    h3 { font-size: 1.15em; }
+  }
+
+  // Full-width video on mobile
+  .video-container {
+    margin-left: -12px;
+    margin-right: -12px;
+    border-radius: 0;
+  }
+
+  // Admonition boxes: tighter on mobile
+  .toasts {
+    .title { font-size: 13px; }
+    .content { font-size: 14px; padding: 8px 10px; }
+  }
+
+  // Tabs: scrollable nav
+  .tabs-nav {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  // Navigation buttons: stack on very small screens
+  .navigation-bottom {
+    flex-direction: column;
+    gap: 8px;
+
+    .prev, .next {
+      width: 100%;
+
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  }
+
+  // Breadcrumbs: allow wrapping
+  .breadcrumb {
+    flex-wrap: wrap;
+    font-size: 13px;
+  }
+}
+
+// Medium screens: moderate adjustments
+@media (min-width: 544px) and (max-width: 767px) {
+  .markdown-body {
+    font-size: 15px;
+  }
 }

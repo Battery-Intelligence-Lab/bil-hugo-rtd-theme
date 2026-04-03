@@ -13,6 +13,7 @@ html[dir="rtl"] {
   .menu-sm {
     left: unset;
     right: -$theme-menu-width-sm;
+    transition: right 0.25s ease;
 
     &.shift {
       left: unset;
@@ -21,8 +22,7 @@ html[dir="rtl"] {
   }
   .content-wrap {
     &.shift {
-      left: unset;
-      right: $theme-menu-width-sm;
+      transform: translateX(-$theme-menu-width-sm);
     }
   }
 
@@ -30,6 +30,7 @@ html[dir="rtl"] {
     .menu-md {
       left: unset;
       right: 0;
+      transition: none;
     }
 
     .content-wrap {
@@ -37,8 +38,7 @@ html[dir="rtl"] {
       margin-right: $theme-menu-width;
 
       &.shift {
-        left: unset;
-        right: 0;
+        transform: none;
       }
     }
   }
