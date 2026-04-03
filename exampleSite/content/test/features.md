@@ -1,12 +1,12 @@
 ---
-title: Scientific Features
+title: Other features
 weight: 3
 math: true
 ---
 
-# Scientific Documentation Features
+#  Documentation Features
 
-This page demonstrates all the scientific features available in the theme.
+This page demonstrates some other features available in the theme.
 
 ## LaTeX Equations
 
@@ -121,9 +121,9 @@ This equation has the same format as the original equation, but the matrix $\Lam
 
 ## Citations
 
-The degradation models used in SLIDE are described in {{< cite "reniers2019" >}}.
-Battery pack optimization approaches are reviewed in {{< cite "sakti2015" >}}.
-For aging-aware management systems, see {{< cite "kumtepeli2020" "Section 3" >}}.
+The DTW-C++ software and its algorithms are described in {{< cite "kumtepeli2024" >}}.
+Long-term energy use in off-grid solar home systems is analysed in {{< cite "perriment2026" "Section 4" >}}.
+For electrochemical-thermal modelling of high power Li-ion pouch cells, see {{< cite "kumtepeli2026" >}}.
 
 {{< bibliography >}}
 
@@ -133,7 +133,7 @@ For aging-aware management systems, see {{< cite "kumtepeli2020" "Section 3" >}}
 
 Embed tutorial or presentation videos:
 
-{{< youtube "dQw4w9WgXcQ" >}}
+{{< youtube "Wc4mxcF0NM4" >}}
 
 ---
 

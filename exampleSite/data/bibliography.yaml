@@ -1,23 +1,23 @@
-reniers2019:
-  authors: "J.M. Reniers, G. Mulder, D.A. Howey"
-  title: "Review and performance comparison of mechanical-chemical degradation models for lithium-ion batteries"
-  journal: "Journal of The Electrochemical Society"
-  year: 2019
-  doi: "10.1149/2.0281914jes"
-  short: "Reniers et al., 2019"
+kumtepeli2024:
+  authors: "V. Kumtepeli, R. Perriment, D.A. Howey"
+  title: "DTW-C++: Fast dynamic time warping and clustering of time series data"
+  journal: "Journal of Open Source Software"
+  year: 2024
+  doi: "10.21105/joss.06881"
+  short: "Kumtepeli et al., 2024"
 
-sakti2015:
-  authors: "A. Sakti, J.J. Michalek, E.R.H. Fuchs, J.F. Whitacre"
-  title: "A techno-economic analysis and optimization of Li-ion batteries for light-duty passenger vehicle electrification"
+perriment2026:
+  authors: "R. Perriment, V. Mergulhao, V. Kumtepeli, P. Parikh, M.D. McCulloch, D.A. Howey"
+  title: "Understanding long-term energy use in off-grid solar home systems in sub-Saharan Africa"
+  journal: "Energy for Sustainable Development"
+  year: 2026
+  doi: "10.1016/j.esd.2026.101896"
+  short: "Perriment et al., 2026"
+
+kumtepeli2026:
+  authors: "V. Kumtepeli, M.E. Wojtala, E.C. Tredenick, C.W. Monroe, D.A. Howey"
+  title: "Electrochemical-thermal modelling of high power Li-ion pouch cells"
   journal: "Journal of Power Sources"
-  year: 2015
-  doi: "10.1016/j.jpowsour.2014.09.078"
-  short: "Sakti et al., 2015"
-
-kumtepeli2020:
-  authors: "V. Kumtepeli, Y. Zhao, M. Villen-Guzman, T. Langlois, D.A. Howey"
-  title: "Design and analysis of an aging-aware lithium-ion battery pack management system"
-  journal: "IFAC-PapersOnLine"
-  year: 2020
-  doi: "10.1016/j.ifacol.2020.12.2045"
-  short: "Kumtepeli et al., 2020"
+  year: 2026
+  doi: "10.1016/j.jpowsour.2026.238764"
+  short: "Kumtepeli et al., 2026"
